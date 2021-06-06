@@ -1,6 +1,6 @@
 Welcome to our Python-project.
 
-**Holy Land Store.
+**Holy Land Store.**
 
 **Team Members**:
 Sahar Murrar. Email: murrarsahar@gmail.com  
