@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <style>
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      nav {
+        background-color: #659dbd;
+      }
+      .logoname {
+        display: inline-block;
+        height: 30px;
+      }
+      .menu {
+        padding-bottom: 3px;
+      }
+    </style>
+    <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"
+    ></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/order.css' %}">      
+    <title>Order</title>
+    </head>
+    <body>
+    <!-- nav -->
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark">
+        <a href="#" class="navbar-brand">
+        <img
+            src="{% static 'imgs/logo.jpg' %}"
+            alt="Holy Land Store"
+            class="logo"
+        />
+        HolyLandStore
+        </a>
+        <button
+        type="button"
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        >
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse menu" id="navbarCollapse">
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link active">Home</a>
+            <a href="#" class="nav-item nav-link">About</a>
+            <a href="#" class="nav-item nav-link">Shop</a>
+            <a href="#" class="nav-item nav-link">Sign in</a>
+        </div>
+        <form class="form-inline" style="float: right;">
+            <input
+            type="text"
+            class="form-control mr-sm-2"
+            placeholder="Search"
+            />
+            <button type="submit" class="btn btn-outline-light serchbtn">Search</button>
+        </form>
+        </div>
+    </nav>
+
+    <!-- nav -->
+<!-- main -->
+<main>
+
+<div class="container wrapper">
+            <div class="row cart-head">
+                <div>
+                    <h1 class="head_page">Your Order</h1>
+                    <hr>
+                </div>        
+            </div>    
+            <div class="row cart-body">
+                <form class="form-horizontal" method="post" action="">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
+                    <!--REVIEW ORDER-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Review Order <div class="pull-right"><small><a class="afix-1" href="#">Edit Cart</a></small></div>
+                        </div>
+                        {% for cart in all_user_carts %}
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-md-5 col-xs-3">
+                                        <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <div class="col-xs-12"> {{cart.product.title}} </div>
+                                        <div class="col-xs-12"><small>Quantity:<span> {{cart.quantity}} </span></small></div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3 text-right">
+                                        <h6><span>$</span> {{cart.price}} </h6>
+                                    </div>
+                                </div>
+                                <div class="form-group"><hr /></div>
+                        {% endfor %}    
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <strong>Subtotal</strong>
+                                    <div class="pull-right"><span>$</span><span>{{totalPrice}}</span></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <strong>Tax (5%)</strong>
+                                    <div class="pull-right"><span>$</span><span> {{tax}} </span></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <strong>Shipping</strong>
+                                    <div class="pull-right"><span>$</span><span>15.00</span></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <strong>Grand Total</strong>
+                                    <div class="pull-right"><span>$</span><span> {{total}} </span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--REVIEW ORDER END-->
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
+                    <!--SHIPPING METHOD-->
+                    
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Address</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <h4>Shipping Address</h4>
+                                </div>
+                            </div>
+                            
+                            <form action="/sign_in" method="POST">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>Country:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" name="country" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>State:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="state" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>City:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="city" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><strong>Street:</strong></div>
+                                        <div class="col-md-12">
+                                            <input type="text" name="street" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                        
+                                                <input type="submit" class="btn btn-primary btn-submit-fix order" value= "Place Order"></input>
+                                        </div>
+                                    </div>
+                            </form>
+                                    
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row cart-footer">
+
+    </div>                                    
+</main>
+<!-- main -->
+<!-- Footer -->
+    <footer class="text-center sticky-bottom text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section
+        class="
+            d-flex
+            justify-content-center justify-content-lg-between
+            p-4
+            border-bottom
+        "
+        >
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3"></i>Holy Land Store
+                </h6>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">Main Menu</h6>
+                <p>
+                <a href="/" class="text-reset">Home</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">About</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Shop</a>
+                </p>
+                <p>
+                <a href="/sign_in" class="text-reset">Sign in</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">Find us on</h6>
+                <p>
+                <a href="#!" class="text-reset">Facebook</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Instagram</a>
+                </p>
+                <p></p>
+            </div>
+
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                <p><i class="fas fa-home me-3"></i> Palestine, Ramallah</p>
+                <p>
+                <i class="fas fa-envelope me-3"></i>
+                yasar_98@oulook.sa
+                </p>
+                <p><i class="fas fa-phone me-3"></i> 0597351359</p>
+            </div>
+            <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div
+        class="text-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.05)"
+        >
+        © 2021 Copyright: HolyLandStore
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
+    
