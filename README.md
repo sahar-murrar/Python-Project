@@ -1,11 +1,4 @@
-![home1](https://user-images.githubusercontent.com/39792032/120991527-68a52600-c78a-11eb-8a93-123283f346ef.PNG)
-![home2](https://user-images.githubusercontent.com/39792032/120991581-722e8e00-c78a-11eb-8c4e-07b93d5726f9.PNG)
-![signin](https://user-images.githubusercontent.com/39792032/120991612-79ee3280-c78a-11eb-8526-7e5a1dc22e4e.PNG)
-![signup](https://user-images.githubusercontent.com/39792032/120991643-7f4b7d00-c78a-11eb-9b49-82f45c1bc630.PNG)
-![category1](https://user-images.githubusercontent.com/39792032/120991659-82df0400-c78a-11eb-82fa-9c2603271a7c.PNG)
-![category2](https://user-images.githubusercontent.com/39792032/120991718-938f7a00-c78a-11eb-9944-d1d3edf7677b.PNG)
-![cart](https://user-images.githubusercontent.com/39792032/120991729-95593d80-c78a-11eb-8d10-b7eb7553a0de.PNG)
-![order](https://user-images.githubusercontent.com/39792032/120991759-9b4f1e80-c78a-11eb-86b2-cefadf255618.PNG)
+
 
 Welcome to our Python-project.
 
@@ -74,5 +67,12 @@ Brief Description
 This use case will allow the user/admin to search for a category
 The actor for this use case is the user/admin.
 
-
+![home1](https://user-images.githubusercontent.com/39792032/120991527-68a52600-c78a-11eb-8a93-123283f346ef.PNG)
+![home2](https://user-images.githubusercontent.com/39792032/120991581-722e8e00-c78a-11eb-8c4e-07b93d5726f9.PNG)
+![signin](https://user-images.githubusercontent.com/39792032/120991612-79ee3280-c78a-11eb-8526-7e5a1dc22e4e.PNG)
+![signup](https://user-images.githubusercontent.com/39792032/120991643-7f4b7d00-c78a-11eb-9b49-82f45c1bc630.PNG)
+![category1](https://user-images.githubusercontent.com/39792032/120991659-82df0400-c78a-11eb-82fa-9c2603271a7c.PNG)
+![category2](https://user-images.githubusercontent.com/39792032/120991718-938f7a00-c78a-11eb-9944-d1d3edf7677b.PNG)
+![cart](https://user-images.githubusercontent.com/39792032/120991729-95593d80-c78a-11eb-8d10-b7eb7553a0de.PNG)
+![order](https://user-images.githubusercontent.com/39792032/120991759-9b4f1e80-c78a-11eb-86b2-cefadf255618.PNG)
 
