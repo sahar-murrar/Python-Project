@@ -33,7 +33,7 @@
 		crossorigin="anonymous"></script>
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'css/product.css' %}" />
-	<title>Souvenirs Category</title>
+	<title>Natural Products Category</title>
 </head>
 
 <body>
@@ -57,6 +57,7 @@
 			  {% endif %}
 			  {% if 'User_email' in request.session %}
 				<a href="/logout" class="nav-item nav-link">Logout</a>
+				<a class="nav-item nav-link" style="color: red; font-weight: bold; margin-left: 450px;"> {{user.first_name}} {{user.last_name}}</a>
 			  {% endif %}
 			</div>
 			<form class="form-inline ml-auto">
@@ -69,13 +70,14 @@
 	<!-- nav -->
 	<!-- main -->
 	<main>
+		<h1>Natural Products Category</h1>
 		<div id="wrap" class="content">
 			<div id="quad_deals">
 				{% for product in all_naturalProducts_products %}
 
 				<div class="deal">
 					<div class="product_img">
-					{#	<img src="{% product.img %}" /> #}
+						<img src="/media/{{product.img}}" alt="product"/>
 					</div>
 					<div class="options">
 						<p class="title">

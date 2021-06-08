@@ -104,6 +104,8 @@ a {
   padding: 0 10%;
   font-size: 20px;
 }
-
+.sticky-top{
+  z-index: 1;
+}
 
 /* about us */

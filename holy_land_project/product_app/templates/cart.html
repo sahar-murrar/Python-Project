@@ -51,7 +51,7 @@
 <body>
 <!-- nav -->
 <nav class="navbar sticky-top navbar-expand-md navbar-dark">
-    <a href="#" class="navbar-brand">
+    <a href="/" class="navbar-brand">
     <img
         src="{% static 'imgs/logo.jpg' %}"
         alt="Holy Land Store"
@@ -73,16 +73,14 @@
         <a href="/" class="nav-item nav-link active">Home</a>
         <a href="#" class="nav-item nav-link">About</a>
         <a href="#" class="nav-item nav-link">Shop</a>
-        <a href="/sign_in" class="nav-item nav-link">Sign in</a>
+        {% if 'User_email' not in request.session %}
+				<a href="/sign_in" class="nav-item nav-link">Sign in</a>
+			  {% endif %}
+			  {% if 'User_email' in request.session %}
+				<a href="/logout" class="nav-item nav-link">Logout</a>
+			  {% endif %}
     </div>
-    <form class="form-inline ml-auto">
-        <input
-        type="text"
-        class="form-control mr-sm-2"
-        placeholder="Search"
-        />
-        <button type="submit" class="btn btn-outline-light">Search</button>
-    </form>
+   
     </div>
 </nav>
 
@@ -97,19 +95,19 @@
     <h2>Shopping Cart</h2>
     <div class="shopping-cart">
     <div class="column-labels">
-        <label class="product-image">Image</label>
-        <label class="product-details">Product</label>
-        <label class="product-price">Price</label>
-        <label class="product-quantity">Quantity</label>
-        <label class="product-removal">Remove</label>
-        <label class="product-line-price">Total</label>
+        <label class="product-image" style="color: black; font-weight: bold;">Image</label>
+        <label class="product-details" style="color: black; font-weight: bold;">Product</label>
+        <label class="product-price" style="color: black; font-weight: bold;">Price</label>
+        <label class="product-quantity"style="color: black; font-weight: bold;">Quantity</label>
+        <label class="product-removal"style="color: black; font-weight: bold;">Remove</label>
+        <label class="product-line-price"style="color: black; font-weight: bold;">Total</label>
     </div>
 
     {% for cart in all_user_carts %}
 
         <div class="product">
             <div class="product-image">
-            {# <img src="{% cart.product.img %}" /> #}
+                <img src="/media/{{cart.product.img}}" />
             </div>
             <div class="product-details">
             <div class="product-title"> {{cart.product.title}} </div>
@@ -133,19 +131,19 @@
 
     <div >
         <div class="totals-item">
-        <label>Subtotal</label>
+        <label style="color: black; font-weight: bold;">Subtotal</label>
         <div class="totals-value" id="cart-subtotal"> {{totalPrice}}</div>
         </div>
         <div class="totals-item">
-        <label>Tax (5%)</label>
+        <label style="color: black; font-weight: bold;">Tax (5%)</label>
         <div class="totals-value" id="cart-tax">tax</div>
         </div>
         <div class="totals-item">
-        <label>Shipping</label>
+        <label style="color: black; font-weight: bold;">Shipping</label>
         <div class="totals-value" id="cart-shipping">15.00</div>
         </div>
         <div class="totals-item totals-item-total">
-        <label>Grand Total</label>
+        <label style="color: black; font-weight: bold;">Grand Total</label>
         <div class="totals-value" id="cart-total">{{total}}</div>
         </div>
     </div>

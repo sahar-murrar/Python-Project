@@ -2,6 +2,7 @@ from typing import ContextManager
 from user_app import models
 from django.shortcuts import redirect, render
 from . import models
+from django.contrib import messages
 
 """
 Cart function: this function will bring the products that the user ordered and display them in the Cart page. 
@@ -41,8 +42,10 @@ Souvenirs function: will display all the souvenir products inside the Souvenirs 
 """
 def souvenirs(request):
     all_products=models.get_all_category_products('Souvenirs')
+    user= models.get_user(request.session['User_email'])
     context={
         'all_souvenirs_products': all_products,
+        'user':user,
     }
     return render(request, 'souvenirs_category.html', context)                       
 
@@ -51,8 +54,10 @@ Food function: will display all the food products inside the Food category. And 
 """
 def food(request):
     all_products=models.get_all_category_products('Food')
+    user= models.get_user(request.session['User_email'])
     context={
         'all_food_products': all_products,
+        'user':user,
     }
     return render(request, 'food_category.html', context)  
 
@@ -61,8 +66,10 @@ Natural_products function: will display all the products inside the Natural_prod
 """
 def natural_products(request):
     all_products=models.get_all_category_products('Natural Products')
+    user= models.get_user(request.session['User_email'])
     context={
         'all_naturalProducts_products': all_products,
+        'user':user,
     }
     return render(request, 'natural_products_category.html',context)  
 
@@ -72,8 +79,10 @@ Leather & accesorries function: will display all the products inside the Leather
 """
 def Leather_accessories(request):
     all_products=models.get_all_category_products('Leather and accessories')
+    user= models.get_user(request.session['User_email'])
     context={
         'all_Leather_accessories_products': all_products,
+        'user':user,
     }
     return render(request, 'Leather_accessories_category.html', context)     
 
@@ -85,25 +94,29 @@ we passed the context which contains information about order such as price, tax,
 def order(request):
     if 'User_email' in request.session:
         all_user_carts=models.get_all_user_carts(request.session['User_email'])
-        totalPrice=0
-        for cart in all_user_carts:
-            totalPrice += cart.price
-        tax= 0.05*totalPrice  
-        total= totalPrice+tax +15 
-        request.session['totalPrice']=totalPrice
-        request.session['tax'] =tax
-        request.session['total']=total
-        # orderId=all_user_carts[0].order.id
-        if 'flag' not in request.session:
-            request.session['flag']=0
-        context={
-            'totalPrice':request.session['totalPrice'],
-            'tax': request.session['tax'],
-            'total': request.session['total'],
-            'all_user_carts':all_user_carts,
-            'flag': request.session['flag'],
-        }
-        return render(request, 'order1.html',context)   
+        if len(all_user_carts) == 0:
+            # messages.error(request, "Your Cart is empty, you have to put products you want in your cart and then open the order page to confirm your order")
+            return render(request, 'error.html')
+        else:    
+            totalPrice=0
+            for cart in all_user_carts:
+                totalPrice += cart.price
+            tax= 0.05*totalPrice  
+            total= totalPrice+tax +15 
+            request.session['totalPrice']=totalPrice
+            request.session['tax'] =tax
+            request.session['total']=total
+            # orderId=all_user_carts[0].order.id
+            if 'flag' not in request.session:
+                request.session['flag']=0
+            context={
+                'totalPrice':request.session['totalPrice'],
+                'tax': request.session['tax'],
+                'total': request.session['total'],
+                'all_user_carts':all_user_carts,
+                'flag': request.session['flag'],
+            }
+            return render(request, 'order1.html',context)   
     return redirect('/sign_in')   
                    
 
@@ -181,7 +194,11 @@ def place_order(request):
         request.session['flag']=1
         return redirect('/category/order')
 
-
+def search(request):
+    if request.method == 'POST':
+        category= request.POST['txtSearch']
+        # if category == 'Food':
+        return redirect('/category/natural_products')
 
 
 

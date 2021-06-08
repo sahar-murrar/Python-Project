@@ -6,5 +6,6 @@ urlpatterns = [
     path('sign_in', views.sign_in),
     path('process_user', views.process_user),
     path('logout', views.logout),
+    path('category/search/<str>', views.autocomplete),
 
 ]

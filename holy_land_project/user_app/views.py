@@ -3,6 +3,9 @@ from . import models
 from product_app import models as pmodel
 from django.contrib import messages
 import bcrypt
+from django.http import JsonResponse
+from product_app.models import Category
+import user_app
 
 """
 Index function: will take the user to the (Home page)
@@ -10,8 +13,10 @@ context we passed to the render contains the all store categories.
 """
 def index(request):
     all_categories=pmodel.get_all_categories()  
+    # user= models.get_user(request.session['User_email'])
     context={
         'All_categories':all_categories,
+        # 'user':user,
     } 
     return render(request, 'home_page.html', context)
 
@@ -94,4 +99,20 @@ logout function: will logout from the user account and redirect the user to the 
 """
 def logout(request):
     request.session.clear()
-    return redirect('/')          
+    return redirect('/')  
+
+"""
+autocomplete function: for search ba Ajax
+render the title of categories.
+"""
+
+def autocomplete(request, str): 
+    data={}
+    x=Category.objects.filter(title__contains=str)
+    names=[]
+    for i in x:
+        names.append(i.title )
+        data['names'] = names
+    request.session['title']=names
+    print(request.session['title'])
+    return JsonResponse(data,safe=False)                

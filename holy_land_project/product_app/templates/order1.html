@@ -42,7 +42,7 @@
     <body>
     <!-- nav -->
     <nav class="navbar sticky-top navbar-expand-md navbar-dark">
-        <a href="#" class="navbar-brand">
+        <a href="/" class="navbar-brand">
         <img
             src="{% static 'imgs/logo.jpg' %}"
             alt="Holy Land Store"
@@ -66,14 +66,7 @@
             <a href="#" class="nav-item nav-link">Shop</a>
             <a href="/logout" class="nav-item nav-link">Logout</a>
         </div>
-        <form class="form-inline" style="float: right;">
-            <input
-            type="text"
-            class="form-control mr-sm-2"
-            placeholder="Search"
-            />
-            <button type="submit" class="btn btn-outline-light serchbtn">Search</button>
-        </form>
+        
         </div>
     </nav>
 
@@ -81,8 +74,9 @@
 <!-- main -->
 <main>
     {% for cart in all_user_carts %}
-        <div style="border: 2px solid black;">
+        <div style="border: 2px solid black; width: 500px; margin-bottom: 8px; ">
             <p> product name: {{cart.product.title}} </p>
+            <img style="width: 50%; height: 50%;" src="/media/{{cart.product.img}}" />
             <p> quantity: {{cart.quantity}} </p>
             <p> price: {{cart.price}} </p>
 
