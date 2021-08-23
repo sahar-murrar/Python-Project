@@ -12,7 +12,7 @@ Hani Khamees. Email: hani.ikhmais@gmail.com
 **Holly Land Store**: is a website that promotse for the hand-made Palestinian products. Generally Our website aims to introduce the Palestinian culture to the rest of the world and specifically will target the tourists who can not visit the Holy land to buy from our Hand-made souviners store where we offer a variety of gifts and hand-made souviners that are made from the olive wood, seeshells, glass and ceramic. We are also trying to offer our products to the Palestininas who live in the diaspora since we know how much they love Palestine products and we know hard they try to get Palestinian Zaatar or Warak Dawali or other Herbs. This Website will also support the small houshold buisnesses in which we will be offering their products on our website.     
 
 
-**Technologies used in this website:** Django, SQL, Ajax.
+**Technologies used in this website:** Django, ORM--> SQLite, Ajax.
 
 **Functional requirements:** 
 
